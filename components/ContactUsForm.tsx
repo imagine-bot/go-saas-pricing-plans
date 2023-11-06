@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { z } from 'zod';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 const ContactUsForm: React.FC = () => {
   const [name, setName] = useState('');
@@ -44,6 +48,10 @@ const ContactUsForm: React.FC = () => {
 
       if (response.ok) {
         setSubmitted(true);
+        toast.success('Thank you for contacting us!', {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 3000,
+        });
       }
     } catch (err) {
       if (err instanceof z.ZodError) {
